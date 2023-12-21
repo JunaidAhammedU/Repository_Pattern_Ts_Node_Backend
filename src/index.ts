@@ -4,7 +4,7 @@ env.config();
 
 
 
-const PORT = process.env.PORT || 5000;
+const PORT: number = parseInt(process.env.PORT || "3000");
 app.listen(PORT, () => {
   console.log("server started");
 });
