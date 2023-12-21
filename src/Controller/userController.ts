@@ -6,6 +6,7 @@ import UserService from "../Service/userService";
 
 interface IUserController {
   createuser(req: Request, res: Response): Promise<void>;
+  getUsers(req: Request, res: Response): Promise<void>;
 }
 
 export default class UserController implements IUserController {
@@ -13,7 +14,8 @@ export default class UserController implements IUserController {
   constructor() {
     this.userService = new UserService();
   }
-  
+
+  // Create user
   async createuser(
     req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
     res: Response<any, Record<string, any>>
@@ -21,6 +23,19 @@ export default class UserController implements IUserController {
     try {
       const user: IUser = req.body;
       const data = await this.userService.createUser(user);
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).json({ message: "internal server error" });
+    }
+  }
+
+  // Get all users
+  async getUsers(
+    req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
+    res: Response<any, Record<string, any>>
+  ): Promise<void> {
+    try {
+      const data = await this.userService.getUsers();
       res.status(200).json(data);
     } catch (error) {
       res.status(500).json({ message: "internal server error" });
