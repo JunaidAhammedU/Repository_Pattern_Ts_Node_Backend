@@ -3,12 +3,16 @@ import { IUser } from "../Model/userModel";
 import { ParamsDictionary } from "express-serve-static-core";
 import { ParsedQs } from "qs";
 import UserService from "../Service/userService";
+//-----------------------------------------------------------
 
+
+// interface controller
 interface IUserController {
   createuser(req: Request, res: Response): Promise<void>;
   getUsers(req: Request, res: Response): Promise<void>;
 }
 
+// user controller class
 export default class UserController implements IUserController {
   private userService: UserService;
   constructor() {
@@ -27,7 +31,7 @@ export default class UserController implements IUserController {
     } catch (error) {
       res.status(500).json({ message: "internal server error" });
     }
-  }
+  } 
 
   // Get all users
   async getUsers(
