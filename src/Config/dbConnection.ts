@@ -4,8 +4,8 @@ env.config();
 
 const dbConnect = async () => {
   try {
-    const connect = await mongoose.connect("mongodb://127.0.0.1:27017/UserManagement");
-    console.log("Database connected");
+    const connect = await mongoose.connect("mongodb+srv://junaid:Junaid3337@cluster0.7vkcbji.mongodb.net/?retryWrites=true&w=majority");
+    console.log("DB contected");
   } catch (error) {
     console.log("Database connection failed", error);
   }
